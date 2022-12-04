@@ -15,6 +15,7 @@ public class MiCuenta extends javax.swing.JFrame {
      */
     public MiCuenta() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

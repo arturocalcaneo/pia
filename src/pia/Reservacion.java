@@ -17,6 +17,7 @@ public class Reservacion extends javax.swing.JFrame {
         initComponents();
         setTitle("Reservación de Habitación | Hotelería");
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**

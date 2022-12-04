@@ -4,6 +4,7 @@
  */
 package pia;
 
+import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 
@@ -74,7 +75,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(255, 204, 102));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(18, 18, 18, 18));
@@ -125,6 +126,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnGestionarServicios.setForeground(new java.awt.Color(0, 0, 0));
         btnGestionarServicios.setText("Servicios");
         btnGestionarServicios.setBorder(null);
+        btnGestionarServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarServiciosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -154,6 +160,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnMas.setForeground(new java.awt.Color(0, 0, 0));
         btnMas.setText("Más");
         btnMas.setBorder(null);
+        btnMas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -342,8 +353,8 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -351,7 +362,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGap(0, 205, Short.MAX_VALUE)))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel2.setBackground(new java.awt.Color(245, 213, 150));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -404,7 +415,12 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenu2.add(menuItemNuevaHabitacion);
 
-        jMenuItem7.setText("Nuevo Usuario");
+        jMenuItem7.setText("Nuevo Cuenta");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
@@ -456,9 +472,11 @@ public class Dashboard extends javax.swing.JFrame {
         
         this.menuItemNuevaHabitacion.setEnabled(false);
         
-        Habitaciones habitaciones= new Habitaciones();
-        habitaciones.setDash(this);
-        habitaciones.setVisible(true);
+        EventQueue.invokeLater(() -> {
+            Habitaciones habitaciones= new Habitaciones();
+            habitaciones.setDash(this);
+            habitaciones.setVisible(true);
+        });
     }//GEN-LAST:event_btnGestionarHabitacionesActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -479,9 +497,22 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void menuItemNuevaHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNuevaHabitacionActionPerformed
-        RegistroHabitacion registro= new RegistroHabitacion();
+        AlterarDatosHabitacion registro= new AlterarDatosHabitacion();
         registro.setVisible(true);
     }//GEN-LAST:event_menuItemNuevaHabitacionActionPerformed
+
+    private void btnGestionarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarServiciosActionPerformed
+        
+    }//GEN-LAST:event_btnGestionarServiciosActionPerformed
+
+    private void btnMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasActionPerformed
+        
+    }//GEN-LAST:event_btnMasActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        NuevaCuenta nuevacuenta= new NuevaCuenta();
+        nuevacuenta.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     public JButton getBtnGestionarHabitaciones() {
         return btnGestionarHabitaciones;

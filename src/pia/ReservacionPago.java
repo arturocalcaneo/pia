@@ -15,6 +15,7 @@ public class ReservacionPago extends javax.swing.JFrame {
      */
     public ReservacionPago() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

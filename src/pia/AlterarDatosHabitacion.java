@@ -4,21 +4,26 @@
  */
 package pia;
 
+import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import modelos.Habitaciones;
 
 /**
  *
  * @author HP
  */
-public class RegistroHabitacion extends javax.swing.JFrame {
+public class AlterarDatosHabitacion extends javax.swing.JFrame {
 
     /**
      * Creates new form registrohabitaciones
      */
-    public RegistroHabitacion() {
+    public AlterarDatosHabitacion() {
         initComponents();
         setTitle("Nueva Habitacion | Hotelería");
+        this.setLocationRelativeTo(null);
+        
+        EventQueue.invokeLater(() -> cargarDatosHabitacion());
     }
 
     /**
@@ -87,7 +92,7 @@ public class RegistroHabitacion extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Estado de la Habitación");
 
-        btnGuardar.setBackground(new java.awt.Color(57, 167, 2));
+        btnGuardar.setBackground(new java.awt.Color(0, 153, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
@@ -100,7 +105,7 @@ public class RegistroHabitacion extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Cancelar");
+        jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -121,28 +126,28 @@ public class RegistroHabitacion extends javax.swing.JFrame {
             .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(boxEstadoHabitacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spinnerPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(boxTipoHabitacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxEstadoHabitacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,16 +192,23 @@ public class RegistroHabitacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cargarDatosHabitacion(){
+        this.spinnerPiso.setValue( this.infoHabitacion.getPISO() );
+        this.boxTipoHabitacion.setSelectedItem( this.infoHabitacion.getTIPO_HABIT() );
+        this.textAreaDescripcion.setText( this.infoHabitacion.getTIPO_HABIT_OTRO_DESCRIPCION() );
+        this.textPrecio.setText( String.valueOf( (float)this.infoHabitacion.getPRECIO() ) );
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private int CLAVE_CATHAB_AUX_TOMODIFY= -1;
+    private modelos.Habitaciones infoHabitacion= new modelos.Habitaciones();
     
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         modelos.Habitaciones habs= new modelos.Habitaciones();
         
-        habs.setCLAVE_CATHAB( CLAVE_CATHAB_AUX_TOMODIFY );
+        habs.setCLAVE_CATHAB( this.infoHabitacion.getCLAVE_CATHAB() );
         habs.setPISO( (int)this.spinnerPiso.getValue() );
         habs.setTIPO_HABIT((String) this.boxTipoHabitacion.getSelectedItem());
         habs.setTIPO_HABIT_OTRO_DESCRIPCION( this.textAreaDescripcion.getText() );
@@ -204,11 +216,11 @@ public class RegistroHabitacion extends javax.swing.JFrame {
         habs.setESTATUS_CATHAB( obtenerEstadoHabitacionComboBox() );
         
         // Si la clave de habitacion auxiliar es "-1" --> INSERTAR
-        if(CLAVE_CATHAB_AUX_TOMODIFY == -1){
+        if(this.infoHabitacion.getCLAVE_CATHAB() == -1){
             if(habs.crearHabitacion()){
                 JOptionPane.showMessageDialog(this.jPanel1, "La habitación ha sido creada con éxito.", "Habitación Creada", JOptionPane.INFORMATION_MESSAGE);
             }
-        }else if(CLAVE_CATHAB_AUX_TOMODIFY > -1){ // MODIFICAR
+        }else if(this.infoHabitacion.getCLAVE_CATHAB() > -1){ // MODIFICAR
             var respuesta= habs.actualizarHabitacion();
             System.out.println(respuesta);
         }
@@ -223,8 +235,8 @@ public class RegistroHabitacion extends javax.swing.JFrame {
         }
     }
 
-    public void setCLAVE_CATHAB_AUX_TOMODIFY(int CLAVE_CATHAB) {
-        this.CLAVE_CATHAB_AUX_TOMODIFY = CLAVE_CATHAB;
+    public void setInfoHabitacion(Habitaciones infoHabitacion) {
+        this.infoHabitacion = infoHabitacion;
     }
 
     public JButton getBtnGuardar() {

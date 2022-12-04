@@ -1,5 +1,9 @@
 package pia;
 
+import java.net.PasswordAuthentication;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,12 +14,16 @@ package pia;
  * @author HP
  */
 public class AutenticacionDeCuenta extends javax.swing.JFrame {
+    
+    private final modelos.Recepcionista recepcionista= new modelos.Recepcionista();
 
     /**
      * Creates new form registrocuenta
      */
     public AutenticacionDeCuenta() {
         initComponents();
+        setTitle("Hotelería | Iniciar Sesión");
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
 
@@ -32,8 +40,8 @@ public class AutenticacionDeCuenta extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        textCorreo = new javax.swing.JTextField();
+        textContrasena = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         btnOlvideContrasena = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
@@ -50,33 +58,29 @@ public class AutenticacionDeCuenta extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Correo:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textCorreo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        textCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textCorreoActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        textCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                textCorreoKeyPressed(evt);
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        textContrasena.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        textContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jPasswordField1KeyPressed(evt);
+                textContrasenaKeyPressed(evt);
             }
         });
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -92,8 +96,8 @@ public class AutenticacionDeCuenta extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textContrasena)
+                            .addComponent(textCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
@@ -104,20 +108,18 @@ public class AutenticacionDeCuenta extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 540, 400));
 
-        btnOlvideContrasena.setBackground(new java.awt.Color(255, 255, 255));
         btnOlvideContrasena.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        btnOlvideContrasena.setForeground(new java.awt.Color(0, 0, 0));
         btnOlvideContrasena.setText("Olvidé mi contraseña");
         btnOlvideContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,9 +128,7 @@ public class AutenticacionDeCuenta extends javax.swing.JFrame {
         });
         jPanel1.add(btnOlvideContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 170, 30));
 
-        btnIngresar.setBackground(new java.awt.Color(255, 255, 255));
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        btnIngresar.setForeground(new java.awt.Color(0, 0, 0));
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,36 +151,48 @@ public class AutenticacionDeCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textCorreoActionPerformed
 
     private void btnOlvideContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOlvideContrasenaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOlvideContrasenaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // Después que el usuario haya sido validado, mostrar la ventana..
-        Dashboard dashboard= new Dashboard();
-        dashboard.setVisible(true);
         
-        this.setVisible(false);
-        this.dispose();
+        recepcionista.setCORREO( this.textCorreo.getText().trim() );
+        recepcionista.setPASSW( this.textContrasena.getText() );
+        
+        if( recepcionista.existeUsuario() ){
+            if( recepcionista.autenticarUsuario() ){
+                // Después que el usuario haya sido validado, mostrar la ventana..
+                Dashboard dashboard= new Dashboard();
+                dashboard.setVisible(true);
+
+                this.setVisible(false);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this.jPanel1, "El correo o contraseña son incorrectos.", "Iniciar Sesión | Recepcionista", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this.jPanel1, "El usuario con el que intentas acceder no existe en el sistema.", "Iniciar Sesión | Recepcionista", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+    private void textContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textContrasenaKeyPressed
         // Si al presionar enter...
         if( evt.getKeyCode() == 10){
             this.btnIngresar.doClick();
         }
-    }//GEN-LAST:event_jPasswordField1KeyPressed
+    }//GEN-LAST:event_textContrasenaKeyPressed
 
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+    private void textCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCorreoKeyPressed
         // Si al presionar enter...
         if( evt.getKeyCode() == 10 ){
-            this.jPasswordField1.requestFocus();
+            this.textContrasena.requestFocus();
         }        
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_textCorreoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -232,7 +244,7 @@ public class AutenticacionDeCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField textContrasena;
+    private javax.swing.JTextField textCorreo;
     // End of variables declaration//GEN-END:variables
 }

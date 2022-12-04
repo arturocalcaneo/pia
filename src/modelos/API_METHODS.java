@@ -5,17 +5,24 @@
 package modelos;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 /**
  *
  * @author Arturo A. Calcaneo B
  */
 public abstract class API_METHODS {
+    
+    public String encodeValue(String value) throws UnsupportedEncodingException {
+        return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+    }
     
     protected String GET(String path) throws IOException, InterruptedException {
         HttpClient cliente= HttpClient.newHttpClient();

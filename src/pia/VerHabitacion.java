@@ -1,5 +1,7 @@
 package pia;
 
+import java.awt.EventQueue;
+import javax.swing.JOptionPane;
 import modelos.Habitaciones;
 
 /*
@@ -13,6 +15,7 @@ import modelos.Habitaciones;
  */
 public class VerHabitacion extends javax.swing.JFrame {
     
+    // Esta variable almacenara todos los datos de la habitación seleccionada desde Habitaciones.class
     private modelos.Habitaciones infoHabitacion= new modelos.Habitaciones();
 
     /**
@@ -22,6 +25,19 @@ public class VerHabitacion extends javax.swing.JFrame {
         initComponents();
         setTitle("Hoteleria | Habitación");
         setResizable(false);
+        this.setLocationRelativeTo(null);
+        
+        this.btnModificarHabitacion.setEnabled(false);
+        this.btnEliminarHabitacion.setEnabled(false);
+        this.btnReservar.setEnabled(false);
+        
+        EventQueue.invokeLater(() -> {
+            cargarPreviewDeDatos();
+            
+            this.btnModificarHabitacion.setEnabled(true);
+            this.btnEliminarHabitacion.setEnabled(true);
+            this.btnReservar.setEnabled(true);
+        });
     }
 
     /**
@@ -36,12 +52,17 @@ public class VerHabitacion extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        tituloHabitacion = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        imgHabitacion = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        precioHabitacion = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        pisoHabitacion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        habitacionDesc = new javax.swing.JTextArea();
         btnReservar = new javax.swing.JButton();
         btnModificarHabitacion = new javax.swing.JButton();
         btnEliminarHabitacion = new javax.swing.JButton();
@@ -53,24 +74,23 @@ public class VerHabitacion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 0));
 
-        jLabel1.setFont(new java.awt.Font("Source Sans Pro Black", 3, 20)); // NOI18N
-        jLabel1.setText("Suite Master");
+        tituloHabitacion.setFont(new java.awt.Font("Source Sans Pro Black", 3, 22)); // NOI18N
+        tituloHabitacion.setText("Suite Master");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(jLabel1)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGap(216, 216, 216)
+                .addComponent(tituloHabitacion)
+                .addContainerGap(263, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tituloHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 610, 40));
@@ -81,19 +101,51 @@ public class VerHabitacion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/preview_habitacion.jpg"))); // NOI18N
-        jPanel2.add(jLabel3, new java.awt.GridBagConstraints());
+        imgHabitacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        imgHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/preview_habitacion.jpg"))); // NOI18N
+        jPanel2.add(imgHabitacion, new java.awt.GridBagConstraints());
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 51));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Tipo de cama:\n2 habitaciones (1 habitación con cama king size y otra con 2 camas matrimoniales).\n\nCaracterísticas:\nSuite de 195 m²2\n\nBeneficios:\nAcceso a la terraza con camastros y jacuzzi exterior.\nDescripción: aire acondicionado, sala, comedor, escritorio, silla ejecutiva y kit de planchado.\n\nDetalles de la habitación\n\nServicios: caja de seguridad y minibar.\nComunicación: línea telefónica y 2 televisiones de 32\" y de 55\" con servicio de señal satelital.\nBaño: 1 Habitación cuenta con baño completo y la otra habitacion baño completo con tina de hidromasaje, secadora, espejo de vanidad, amenidades de lujo, bata de baño, pantuflas y kit de higiene personal.\nSeguridad: sistema contra incendios con detectores de humo y aspersores.\nEntradas y salidas: registro de entrada 15:00 h, registro de salida 13:00 h.\nExtras: camas con costo adicional y cunas gratuitas sujetas a disponibilidad.\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 2, 12, 12));
+        jPanel3.setLayout(new java.awt.GridLayout(2, 0, 10, 20));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Precio:");
+        jPanel3.add(jLabel1);
+
+        precioHabitacion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        precioHabitacion.setForeground(new java.awt.Color(51, 51, 51));
+        precioHabitacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(precioHabitacion);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Piso:");
+        jPanel3.add(jLabel4);
+
+        pisoHabitacion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        pisoHabitacion.setForeground(new java.awt.Color(51, 51, 51));
+        pisoHabitacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(pisoHabitacion);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        jPanel2.add(jPanel3, gridBagConstraints);
+
+        habitacionDesc.setBackground(new java.awt.Color(255, 255, 51));
+        habitacionDesc.setColumns(20);
+        habitacionDesc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        habitacionDesc.setRows(5);
+        jScrollPane1.setViewportView(habitacionDesc);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 48;
         gridBagConstraints.ipady = 12;
@@ -112,7 +164,7 @@ public class VerHabitacion extends javax.swing.JFrame {
                 btnReservarActionPerformed(evt);
             }
         });
-        bg.add(btnReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 150, 70));
+        bg.add(btnReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 150, 70));
 
         btnModificarHabitacion.setBackground(new java.awt.Color(0, 51, 255));
         btnModificarHabitacion.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,7 +174,7 @@ public class VerHabitacion extends javax.swing.JFrame {
                 btnModificarHabitacionActionPerformed(evt);
             }
         });
-        bg.add(btnModificarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 570, 150, 40));
+        bg.add(btnModificarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 580, 150, 40));
 
         btnEliminarHabitacion.setBackground(new java.awt.Color(255, 0, 51));
         btnEliminarHabitacion.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,23 +199,44 @@ public class VerHabitacion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void cargarPreviewDeDatos(){
+        this.tituloHabitacion.setText( this.infoHabitacion.getTIPO_HABIT() );
+        
+        this.habitacionDesc.setText( this.infoHabitacion.getTIPO_HABIT_OTRO_DESCRIPCION() );
+        this.habitacionDesc.setEditable(false);
+        
+        this.precioHabitacion.setText( String.valueOf( this.infoHabitacion.getPRECIO() ) );
+        
+        this.pisoHabitacion.setText( String.valueOf( this.infoHabitacion.getPISO() ) );
+    }
+    
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
-        // TODO add your handling code here:
+        Reservacion reserv= new Reservacion();
+        reserv.setVisible(true);
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnModificarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarHabitacionActionPerformed
-        RegistroHabitacion modificarVirtual= new RegistroHabitacion();
-        modificarVirtual.setCLAVE_CATHAB_AUX_TOMODIFY( this.infoHabitacion.getCLAVE_CATHAB() );
-        modificarVirtual.getBtnGuardar().setText("Guardar Cambios");
+        AlterarDatosHabitacion modificarHabitacion_VirtualView= new AlterarDatosHabitacion();
         
-        modificarVirtual.setVisible(true);
+        modificarHabitacion_VirtualView.setInfoHabitacion( this.infoHabitacion );
+        
+        modificarHabitacion_VirtualView.getBtnGuardar().setBackground(new java.awt.Color(0,153,255));
+        modificarHabitacion_VirtualView.getBtnGuardar().setText("Guardar Cambios");
+        
+        modificarHabitacion_VirtualView.setVisible(true);
         
         // El mecanismo de actualización funciona en RegistroHabitacion.java
     }//GEN-LAST:event_btnModificarHabitacionActionPerformed
 
     private void btnEliminarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHabitacionActionPerformed
-        this.infoHabitacion.eliminarHabitacion();
+        var respuesta= JOptionPane.showConfirmDialog(this.jPanel2, "¿Seguro que desea proceder con la eliminación?", "Ver Habitación | Eliminar", JOptionPane.OK_CANCEL_OPTION);
+        if(respuesta == 0){
+            if( this.infoHabitacion.eliminarHabitacion() ){
+                JOptionPane.showMessageDialog(this.jPanel2, "La habitación ha sido eliminada con éxito.", "Ver Habitación | Eliminar", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_btnEliminarHabitacionActionPerformed
 
     public Habitaciones getInfoHabitacion() {
@@ -179,12 +252,17 @@ public class VerHabitacion extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarHabitacion;
     private javax.swing.JButton btnModificarHabitacion;
     private javax.swing.JButton btnReservar;
+    private javax.swing.JTextArea habitacionDesc;
+    private javax.swing.JLabel imgHabitacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel pisoHabitacion;
+    private javax.swing.JLabel precioHabitacion;
+    private javax.swing.JLabel tituloHabitacion;
     // End of variables declaration//GEN-END:variables
 }

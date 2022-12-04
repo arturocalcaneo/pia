@@ -6,7 +6,7 @@ package pia;
  */
 
 import com.google.gson.Gson;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
 
 /**
  *
@@ -27,7 +27,12 @@ public class Habitaciones extends javax.swing.JFrame {
         setTitle("Gestión de Habitaciones | Hotelería");
         
         this.setResizable(false);
-        this.cargarHabitaciones();
+        this.setLocationRelativeTo(null);
+        
+        EventQueue.invokeLater(() -> {
+            this.panelHabitaciones.remove(this.labelCargando);
+            this.cargarHabitaciones();
+        });
     }
     
     private void cargarHabitaciones(){
@@ -61,15 +66,20 @@ public class Habitaciones extends javax.swing.JFrame {
                 panelHabitacion.getVerHabitacion().addActionListener((e) -> {
                     VerHabitacion vistaHabitacion= new VerHabitacion();
                     vistaHabitacion.setVisible(true);
-                    
+
                     vistaHabitacion.setInfoHabitacion( habitacion );
                 });
-                // Evento del Botón "Asignar Habitación"
-                panelHabitacion.getAsignarHuesped().addActionListener((e)->{
-                    Reservacion reserv= new Reservacion();
-                                reserv.setVisible(true);
-                });
-            
+                
+                if( habitacion.getESTATUS_CATHAB() == 0 ){
+                    // Evento del Botón "Asignar Habitación"
+                    panelHabitacion.getAsignarHuesped().addActionListener((e)->{
+                        Reservacion reserv= new Reservacion();
+                                    reserv.setVisible(true);
+                    });
+                }else{
+                    panelHabitacion.getAsignarHuesped().setEnabled(false);
+                }
+                
             this.panelHabitaciones.add(panelHabitacion);
         }
     }
@@ -95,6 +105,7 @@ public class Habitaciones extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelHabitaciones = new javax.swing.JPanel();
+        labelCargando = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -120,10 +131,10 @@ public class Habitaciones extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(234, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(225, 225, 225)
                 .addComponent(jLabel1)
-                .addGap(219, 219, 219))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,6 +157,13 @@ public class Habitaciones extends javax.swing.JFrame {
         panelHabitaciones.setBackground(new java.awt.Color(255, 255, 255));
         panelHabitaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(24, 0, 0, 0));
         panelHabitaciones.setLayout(new java.awt.GridLayout(3, 0));
+
+        labelCargando.setFont(new java.awt.Font("Calibri Light", 2, 44)); // NOI18N
+        labelCargando.setForeground(new java.awt.Color(234, 234, 234));
+        labelCargando.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCargando.setText("Cargando...");
+        panelHabitaciones.add(labelCargando);
+
         jScrollPane1.setViewportView(panelHabitaciones);
 
         jPanel3.add(jScrollPane1);
@@ -210,6 +228,7 @@ public class Habitaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelCargando;
     private javax.swing.JPanel panelHabitaciones;
     // End of variables declaration//GEN-END:variables
 }

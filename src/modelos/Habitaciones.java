@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
  */
 public class Habitaciones extends API_METHODS implements API_CONSTANTS {
     
-    private int CLAVE_CATHAB;
+    private int CLAVE_CATHAB = -1;
     private int PISO;
     private String TIPO_HABIT;
     private String TIPO_HABIT_OTRO_DESC;
@@ -34,7 +34,7 @@ public class Habitaciones extends API_METHODS implements API_CONSTANTS {
         this.ESTATUS_CATHAB = ESTATUS_CATHAB;
     }
     
-    // <editor-fold defaultstate="collapsed" desc="Métodos Getters y Setters"> 
+    // <editor-fold defaultstate="collapsed" desc="Métodos Getters & Setters"> 
     public int getCLAVE_CATHAB() {
         return CLAVE_CATHAB;
     }
